@@ -1,0 +1,63 @@
+@startuml
+title 抽象工厂
+scale 1.5
+package  shapeGroup{
+    interface Shape{
+        + void draw();
+    }
+
+    class Circle implements Shape{
+        + void draw();
+    }
+
+    class Square implements Shape{
+        + void draw();
+    }
+
+    class Rectangle implements Shape{
+        + void draw();
+    }
+}
+
+package colorGroup{
+    interface Color{
+        + void fill();
+    }
+    class Red implements Color{
+    }
+    class Green implements Color{
+    }
+    class Blue implements Color{
+    }
+}
+
+class ShapeFactory{
+    + getShape():Shape
+}
+
+class ColorFactory{
+    + getColor():Color
+}
+
+abstract AbstractFactory{
+    + getShape():Shape
+    + getColor():Color
+}
+
+class FactoryProducer{
+    +getFactory():AbstractFactory
+}
+
+class AbstractFactoryPatternDemo{
+    +main():void
+}
+
+ShapeFactory ..> shapeGroup: < creates
+ColorFactory ..> colorGroup: < creates
+
+ShapeFactory --|>AbstractFactory: extends >
+ColorFactory --|>AbstractFactory: extends >
+
+FactoryProducer -->AbstractFactory: uses >
+AbstractFactoryPatternDemo --> FactoryProducer: uses >
+@enduml

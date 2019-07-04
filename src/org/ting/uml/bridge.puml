@@ -1,0 +1,42 @@
+@startuml
+title 桥接模式
+scale 1.5
+
+interface DrawAPI{
+    +drawCircle():void
+}
+
+class RedCircle{
+    +drawCircle():void
+}
+
+class GreenCircle{
+    +drawCircle():void
+}
+
+RedCircle ..|> DrawAPI: implement >
+GreenCircle ..|> DrawAPI: implement >
+
+class Shape{
+    +drawAPI:DrawAPI
+    +Shape():void
+    +draw():String
+}
+
+class Circle{
+    -x,y,radius:int
+    +Circle():void
+    +draw():String
+}
+
+Circle --|> Shape: extends >
+Shape ..> DrawAPI: uses >
+
+class BridgePatternDemo{
+    +main():ovid
+}
+
+BridgePatternDemo ..> Shape: uses >
+BridgePatternDemo ..> RedCircle: uses >
+BridgePatternDemo ..> GreenCircle: uses >
+@enduml

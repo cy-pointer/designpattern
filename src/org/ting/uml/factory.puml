@@ -1,0 +1,38 @@
+@startuml
+title 工厂模式
+scale 1.5
+
+package factory{
+    interface Shape{
+        +void draw();
+    }
+
+    class Circle{
+        +void draw();
+    }
+
+    class Square{
+        +void draw();
+    }
+
+    class Rectangle{
+        +void draw();
+    }
+}
+
+class ShapeFactory{
+    + Shape getShape();
+}
+
+class FactoryPatternDemo{
+    +void main();
+}
+
+Circle -up-|>Shape : implements >
+Square -up-|>Shape : implements >
+Rectangle -up-|>Shape :implements >
+
+ShapeFactory <..right. factory : < creates
+
+FactoryPatternDemo ..> ShapeFactory : asks >
+@enduml

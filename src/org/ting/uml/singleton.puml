@@ -1,0 +1,18 @@
+@startuml
+title 单例模式
+scale 1.5
+
+class SingletonPatternDemo{
++main():void
+}
+
+class SingleObject{
+    - instance:SingleObject
+    - SingleObject()
+    +getInstance():SingleObject
+    +showMessage():void
+}
+
+SingletonPatternDemo ..> SingleObject :asks >
+
+@enduml

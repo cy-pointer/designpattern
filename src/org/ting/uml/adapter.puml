@@ -1,0 +1,49 @@
+@startuml
+title 适配器模式
+scale 1.5
+package player{
+    interface AdvancedMediaPlayer{
+       +playVlc():void
+       +playMp4():void
+    }
+
+    class VlcPlayer{
+        +playVLC();void
+        +playMp4():void
+    }
+
+    class Mp4Player{
+        +playVLC();void
+        +playMp4():void
+    }
+
+    VlcPlayer ..|> AdvancedMediaPlayer: implement >
+    Mp4Player ..|> AdvancedMediaPlayer: implement >
+}
+
+interface MediaPlayer{
+    +play():void
+}
+
+class MediaAdapter{
+    -advancedMediaPlayer:AdvancedMediaPlayer
+    +MediaAdapter():void
+    +play():void
+}
+
+class AudioPlayer{
+    -mediaAdapter:MediaAdapter
+    +play():void
+}
+
+class AdapterPatternDemo{
+    +main():void
+}
+
+MediaAdapter ..|> MediaPlayer: implement >
+AudioPlayer ..|> MediaPlayer: implement >
+MediaAdapter ..> player: uses >
+AudioPlayer ..> MediaAdapter: uses >
+AdapterPatternDemo ..> AudioPlayer: uses >
+@enduml
+

@@ -1,0 +1,57 @@
+@startuml
+title 原型模式
+scale 1.5
+package shapePack{
+     abstract class Shape{
+        -id:String
+        +type:String
+        +getType():void
+        +getId():String
+        +setId():void
+        +clone():Object
+    }
+
+    class Circle{
+        -type:String
+        +getType():void
+        +getId():String
+        +setId():void
+        +clone():Object
+    }
+
+    class Rectangle{
+        -type:String
+        +getType():void
+        +getId():String
+        +setId():void
+        +clone():Object
+    }
+
+    class Square{
+        -type:String
+        +getType():void
+        +getId():String
+        +setId():void
+        +clone():Object
+    }
+
+    Circle --|> Shape: extend >
+    Rectangle --|> Shape: extend >
+    Square --|> Shape: extend >
+}
+
+class ShapeCache{
+    -shapeMap:HashMap
+    +getShape():Shape
+    +loadCache():void
+}
+
+ShapeCache ..>shapePack: clones >
+
+class PrototypePatternDemo{
+    +main():void
+}
+
+PrototypePatternDemo ..> ShapeCache: asks >
+
+@enduml

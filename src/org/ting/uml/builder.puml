@@ -1,0 +1,57 @@
+@startuml
+title 建造者模式
+scale 1.5
+
+interface Item{
+    +name():String
+    +packing():Packing
+    +price():float
+}
+
+abstract class Burger
+
+class VegBurger
+
+class ChickenBurger
+
+VegBurger --|> Burger: extend >
+ChickenBurger --|> Burger: extend >
+Burger ..|> Item: implement >
+
+abstract class ColdDrink
+class Pepsi
+class Coke
+Pepsi --|> ColdDrink: extend >
+Coke --|> ColdDrink: extend >
+ColdDrink ..|> Item: implement >
+
+interface Packing
+class Wrapper
+class Bottle
+Wrapper ..|> Packing: implement >
+Bottle ..|> Packing: implement >
+
+Burger ..> Wrapper: uses >
+ColdDrink ..>Bottle: uses >
+
+class Meal{
+    -items:ArrayList<item>
+    +name():String
+    +packing():Packing
+    +price():float
+}
+
+Meal ..> Item: uses >
+
+class MealBuilder{
+    +prepareVegMeal():Meal
+    +prepareNonVegMeal():Meal
+}
+
+MealBuilder --> Meal: builds >
+
+class BuilderPatternDemo{
+    +main():void
+}
+BuilderPatternDemo ..> MealBuilder: asks >
+@enduml
