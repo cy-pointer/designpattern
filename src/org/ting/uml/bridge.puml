@@ -17,9 +17,9 @@ class GreenCircle{
 RedCircle ..|> DrawAPI: implement >
 GreenCircle ..|> DrawAPI: implement >
 
-class Shape{
-    +drawAPI:DrawAPI
-    +Shape():void
+abstract class Shape{
+    #drawAPI:DrawAPI
+    #Shape():void
     +draw():String
 }
 
