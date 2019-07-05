@@ -1,0 +1,60 @@
+@startuml
+title 过滤器模式
+scale 1.5
+
+interface Criteria{
+    +meetCriteria():List<Person>
+}
+
+class CriteriaSingle{
+    +meetCriteria():List<Person>
+}
+
+class AndCriteria{
+    -criteria:Criteria
+    -otherCriteria:Criteria
+    +meetCriteria():List<Person>
+}
+
+class OrCriteria{
+    -criteria:Criteria
+    -otherCriteria:Criteria
+    +meetCriteria():List<Person>
+}
+
+class CriteriaFemale{
+    +meetCriteria():List<Person>
+}
+
+class CriteriaMale{
+    +meetCriteria():List<Person>
+}
+
+AndCriteria ..|> Criteria: implements >
+OrCriteria ..|> Criteria: implements >
+CriteriaFemale ..|> Criteria: implements >
+CriteriaMale ..|> Criteria: implements >
+CriteriaSingle ..|> Criteria: implements >
+
+class Person{
+    -name:String
+    -gender:String
+    -maritalStatus:String
+    +Person()
+    +getAge():String
+    +getGender():String
+    +getMaritalStatus():String
+}
+
+class CriteriaPatterDemo{
+    +main():void
+}
+
+CriteriaPatterDemo ..> AndCriteria: uses >
+CriteriaPatterDemo ..> OrCriteria: uses >
+CriteriaPatterDemo ..> CriteriaFemale: uses >
+CriteriaPatterDemo ..> CriteriaMale: uses >
+CriteriaPatterDemo ..> CriteriaSingle: uses >
+CriteriaPatterDemo ..> Person: uses >
+
+@enduml
