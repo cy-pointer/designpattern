@@ -1,0 +1,21 @@
+@startuml
+title 组合模式
+scale 1.5
+class Employee{
+    -name:String
+    -dept:String
+    -salary:int
+    -subordinates:List<Employee>
+    -Employee()
+    +add():void
+    +remove():void
+    +getSubordinates:List
+    +toString:String
+}
+
+class CompositePatternDemo{
+    +main():void
+}
+
+CompositePatternDemo ..> Employee: asks >
+@enduml
